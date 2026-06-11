@@ -1,0 +1,54 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  formula:
+    name: Formula (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15-intel
+            expected-arch: x86_64
+          - runner: macos-15
+            expected-arch: arm64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Confirm runner architecture
+        run: test "$(uname -m)" = "${{ matrix.expected-arch }}"
+
+      - name: Update Homebrew
+        run: brew update
+
+      - name: Audit formula
+        run: brew audit --strict --online ./Formula/specharbor.rb
+
+      - name: Install formula from local file
+        run: brew install ./Formula/specharbor.rb
+
+      - name: Check version
+        run: specharbor version
+
+      - name: Test formula
+        run: brew test specharbor
+
+      - name: Validate tap install command
+        if: github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        run: |
+          brew uninstall specharbor
+          brew untap guferreira1/tap || true
+          brew install guferreira1/tap/specharbor
+          specharbor version
+          brew test guferreira1/tap/specharbor
