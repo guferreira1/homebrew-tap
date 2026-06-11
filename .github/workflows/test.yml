@@ -32,8 +32,11 @@ jobs:
       - name: Update Homebrew
         run: brew update
 
+      - name: Tap local checkout
+        run: brew tap guferreira1/tap "$GITHUB_WORKSPACE"
+
       - name: Audit formula
-        run: brew audit --strict --online ./Formula/specharbor.rb
+        run: brew audit --strict --online specharbor
 
       - name: Install formula from local file
         run: brew install ./Formula/specharbor.rb
