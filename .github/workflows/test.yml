@@ -41,8 +41,8 @@ jobs:
       - name: Audit formula
         run: brew audit --strict --online specharbor
 
-      - name: Install formula from local file
-        run: brew install ./Formula/specharbor.rb
+      - name: Install formula from local tap
+        run: brew install guferreira1/tap/specharbor
 
       - name: Check version
         run: specharbor version
