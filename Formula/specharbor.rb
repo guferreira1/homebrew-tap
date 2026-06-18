@@ -3,17 +3,17 @@
 class Specharbor < Formula
   desc "Spec-driven workflow CLI for AI coding agents"
   homepage "https://github.com/guferreira1/spec-harbor"
-  version "0.2.0"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/guferreira1/spec-harbor/releases/download/v0.2.0/specharbor_Darwin_arm64.tar.gz"
-      sha256 "9591fcb08c26896686c9324c800a4ee7f8f47f1632be50a04526657fe6047b14"
+      url "https://github.com/guferreira1/spec-harbor/releases/download/v0.3.0/specharbor_Darwin_arm64.tar.gz"
+      sha256 "6fc5d438990ac310ef646caae1aa739abc45c831b3b75175b7aa4a0c2bf30764"
     end
     on_intel do
-      url "https://github.com/guferreira1/spec-harbor/releases/download/v0.2.0/specharbor_Darwin_x86_64.tar.gz"
-      sha256 "207c5464a8db9febacd40961edb97f2b3de523854e3d7aa20b5003f772e90ef3"
+      url "https://github.com/guferreira1/spec-harbor/releases/download/v0.3.0/specharbor_Darwin_x86_64.tar.gz"
+      sha256 "452f1216fa59464884d74fc16d9e8e4ecbf41b5f15098ba8d3d3c29940204986"
     end
   end
 
