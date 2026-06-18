@@ -39,7 +39,7 @@ jobs:
         run: brew trust guferreira1/tap
 
       - name: Audit formula
-        run: brew audit --strict specharbor
+        run: brew audit --strict --online specharbor
 
       - name: Install formula from local file
         run: |
